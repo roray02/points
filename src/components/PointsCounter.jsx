@@ -4,30 +4,36 @@ import { Button } from '@/components/ui/button';
 import { Plus, Minus, RotateCcw } from 'lucide-react';
 
 const PointsCounter = () => {
-  const [player1Points, setPlayer1Points] = useState(100000);
-  const [player2Points, setPlayer2Points] = useState(50);
+  const [rohanPoints, setRohanPoints] = useState(100000);
+  const [urviPoints, setUrviPoints] = useState(350);
 
   const resetScores = () => {
-    setPlayer1Points(100000);
-    setPlayer2Points(50);
+    setRohanPoints(100000);
+    setUrviPoints(350);
   };
 
   return (
     <Card className="w-full max-w-md mx-auto">
       <CardHeader>
-        <CardTitle className="text-center">Points Counter</CardTitle>
+        <CardTitle className="text-center text-2xl">Rohan vs Urvi</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="space-y-6">
-          {/* Your Section */}
+          {/* Rohan's Section */}
           <div className="space-y-2">
-            <h2 className="text-xl font-semibold">You</h2>
+            <h2 className="text-xl font-semibold text-blue-600">Rohan</h2>
             <div className="flex items-center space-x-4">
-              <span className="w-10"></span> {/* Spacer for alignment */}
-              <span className="text-2xl font-bold w-32 text-center">{player1Points.toLocaleString()}</span>
               <Button 
                 variant="outline"
-                onClick={() => setPlayer1Points(prev => prev + 1)}
+                onClick={() => setRohanPoints(prev => Math.max(0, prev - 1))}
+                className="bg-red-50 hover:bg-red-100"
+              >
+                <Minus className="h-4 w-4" />
+              </Button>
+              <span className="text-2xl font-bold w-32 text-center text-blue-600">{rohanPoints.toLocaleString()}</span>
+              <Button 
+                variant="outline"
+                onClick={() => setRohanPoints(prev => prev + 1)}
                 className="bg-green-50 hover:bg-green-100"
               >
                 <Plus className="h-4 w-4" />
@@ -35,19 +41,25 @@ const PointsCounter = () => {
             </div>
           </div>
 
-          {/* Friend's Section */}
+          {/* Urvi's Section */}
           <div className="space-y-2">
-            <h2 className="text-xl font-semibold">Friend</h2>
+            <h2 className="text-xl font-semibold text-purple-600">Urvi</h2>
             <div className="flex items-center space-x-4">
               <Button 
                 variant="outline"
-                onClick={() => setPlayer2Points(prev => Math.max(0, prev - 1))}
+                onClick={() => setUrviPoints(prev => Math.max(0, prev - 1))}
                 className="bg-red-50 hover:bg-red-100"
               >
                 <Minus className="h-4 w-4" />
               </Button>
-              <span className="text-2xl font-bold w-32 text-center">{player2Points.toLocaleString()}</span>
-              <span className="w-10"></span> {/* Spacer for alignment */}
+              <span className="text-2xl font-bold w-32 text-center text-purple-600">{urviPoints.toLocaleString()}</span>
+              <Button 
+                variant="outline"
+                onClick={() => setUrviPoints(prev => prev + 1)}
+                className="bg-green-50 hover:bg-green-100"
+              >
+                <Plus className="h-4 w-4" />
+              </Button>
             </div>
           </div>
 
